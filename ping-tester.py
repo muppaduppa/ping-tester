@@ -29,7 +29,7 @@ def ping_device_before(ip_list,ip_subnet_filename,ip_subnet):
     ip_list_up=[]
     with open('ping_tester-{}-before.txt'.format(ip_subnet_filename), 'w') as file:
         print()
-        print('Before Check. Pinging all ip in subnet, looking for device that are reachable')
+        print('Before Check. Pinging all ip in subnet, listing all device that are reachable')
         print('test subnet = {}'.format(ip_subnet))
         print('-' * 80)
         for ip in ip_list:
@@ -37,7 +37,7 @@ def ping_device_before(ip_list,ip_subnet_filename,ip_subnet):
             p.wait()
             if p.returncode == 0:
                 file.write('{}\n'.format(ip))
-                print('{},reachable'.format(ip))
+                print('{}'.format(ip))
                 ip_list_up.append(ip)
                 
         return ip_list_up
@@ -47,7 +47,7 @@ def ping_device_after(ip_list_up,ip_subnet_filename,ip_subnet):
 
     with open('ping_tester-{}-after.txt'.format(ip_subnet_filename), 'w') as file:
         print('\n')
-        print('After Check. Pinging devices')
+        print('After Check. Pinging devices from before, listing all device that are reachable')
         print('test subnet = {}'.format(ip_subnet))
         print('-' * 80)
         for ip in ip_list_up:
@@ -56,7 +56,7 @@ def ping_device_after(ip_list_up,ip_subnet_filename,ip_subnet):
             p.wait()
             if p.returncode == 0:
                 file.write('{}\n'.format(ip))
-                print('{},reachable'.format(ip))
+                print('{}'.format(ip))
                
           
         
